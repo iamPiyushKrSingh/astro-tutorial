@@ -1,5 +1,35 @@
 ---
+import "../styles/global.css";
 
+const pageTitle = "About Me";
+
+const identity = {
+  name: "Piyush Kumar Singh",
+  firstName: "Piyush",
+  country: "India",
+  occupation: "Student",
+  university: "IISER Kolkata",
+  hobbies: ["Physics", "Coding", "Quantum Gravity"],
+};
+
+const skills = [
+  "Julia",
+  "Python",
+  "Matlab",
+  "LaTeX",
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "Astro",
+];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "navy";
+const textWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -8,7 +38,20 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>{pageTitle}</title>
+
+    <style define:vars={{ skillColor, textWeight, textCase }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--textWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
   </head>
   <body>
     <h1>My Personal Website</h1>
@@ -17,25 +60,32 @@
     <a href="/about">About</a>
     <a href="/blog">Blog</a>
 
-    <h1>About Me</h1>
+    <h1>{pageTitle}</h1>
 
     <p>
-      I am a physics major at the Indian Institute of Science Education and
-      Research, Kolkata. I am interested in Quantum Gravity, Information Paradox
-      and Quantum Cosmology. I am also interested in the intersection of Quantum
-      Field Theory and Condesed Matter Physics. In addition to my academic
-      pursuits, I am also a passionate coder and enjoy working on various
-      projects. I have experience in web development.
+      Hello! My name is {identity.name}. I am a {identity.occupation} at{" "}
+      {identity.university} in {identity.country}. I am interested in{" "}
+      {identity.hobbies.join(", ")}.
     </p>
 
-    <p>
-      I am currently working on a project that involves building a personal
-      website using Astro. I am planning to start a blog where I will share my
-      thoughts and ideas on various topics related to physics, coding, and other
-      interests. I am also interested in exploring the use of machine learning
-      in physics research.
-    </p>
+    <h2>Skills</h2>
+    My skills include:
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
 
-    <p>Not to mention, This is just a tutorial website for Astro.</p>
+    <h2>Conditionals</h2>
+
+    {happy && <p>I am happy to be learning Astro!</p>}
+
+    {finished && <p>I finished this tutorial!</p>}
+
+    {
+      goal === 3 ? (
+        <p>My goal is to finish in 3 days.</p>
+      ) : (
+        <p>My goal is not 3 days.</p>
+      )
+    }
   </body>
 </html>
