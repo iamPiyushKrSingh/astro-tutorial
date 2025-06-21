@@ -1,0 +1,42 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/global.css";
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <style>
+    .tag {
+      background-color: #c9c8c8;
+      border-radius: 3px;
+      padding: 5px 5px;
+      font-size: 0.9em;
+    }
+  </style>
+  <p>
+    Written by {frontmatter.author} on {
+      frontmatter.pubDate.toString().slice(0, 10)
+    }
+  </p>
+
+  <p>
+    {
+      frontmatter.tags.map((tag: any) => (
+        <span class="tag" style="margin-right: 5px;">
+          #{tag}
+        </span>
+      ))
+    }
+  </p>
+
+  <p>
+    <em>
+      {frontmatter.description}
+    </em>
+    <br />
+  </p>
+
+  <img src={frontmatter.img.url} alt={frontmatter.img.alt} width="100%" />
+  <slot />
+</BaseLayout>
