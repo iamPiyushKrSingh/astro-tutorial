@@ -22,8 +22,8 @@ const { frontmatter } = Astro.props;
   </style>
   <p>
     Written by {frontmatter.author} on {
-      frontmatter.pubDate.toString().slice(0, 10)
-    }
+      frontmatter.pubDate.toLocaleDateString()
+    }.
   </p>
 
   <p>

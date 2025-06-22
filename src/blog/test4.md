@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/MarkdownPostLayout.astro"
 title: "Some Markdown Test 4"
 description: "This is a test post to check the Markdown rendering in Astro."
 pubDate: 2025-06-22
