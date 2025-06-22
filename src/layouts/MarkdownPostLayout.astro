@@ -8,10 +8,16 @@ const { frontmatter } = Astro.props;
 <BaseLayout pageTitle={frontmatter.title}>
   <style>
     .tag {
+      margin: 0.25em;
       background-color: #c9c8c8;
-      border-radius: 3px;
+      border-radius: 5px;
       padding: 5px 5px;
       font-size: 0.9em;
+    }
+
+    a {
+      /* text-decoration: none; */
+      color: inherit;
     }
   </style>
   <p>
@@ -23,9 +29,9 @@ const { frontmatter } = Astro.props;
   <p>
     {
       frontmatter.tags.map((tag: any) => (
-        <span class="tag" style="margin-right: 5px;">
+        <a href={`/tags/${tag}`} class="tag">
           #{tag}
-        </span>
+        </a>
       ))
     }
   </p>

@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const allPosts = Object.values(
+  import.meta.glob("../posts/*.md", { eager: true })
+);
+
+const uniqueTags = [
+  ...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat()),
+];
+
+const pageTitle = "Tag Index";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <p>
+    This is a list of all tags used in the blog. Click on a tag to see posts
+    associated with it.
+  </p>
+
+  <div class="tags-list">
+    {
+      uniqueTags.map((tag) => (
+        <p class="tag">
+          <a href={`/tags/${tag}`}>#{tag}</a>
+        </p>
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  a {
+    color: inherit;
+  }
+
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* .tag {
+    margin: 0.25em;
+    border: dotted 1px #a1a1a1;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    font-size: 1.15em;
+    background-color: #f8fcfd;
+  } */
+  .tag {
+    margin: 0.25em;
+    background-color: #c9c8c8;
+    border-radius: 7px;
+    padding: 5px 5px;
+    /* font-size: 0.9em; */
+  }
+</style>
